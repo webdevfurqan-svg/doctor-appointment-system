@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+
+<h1>Our Doctors</h1>
+
+<% if (doctors.length === 0) { %>
+  <p>No doctors have registered yet.</p>
+<% } else { %>
+  <div class="doctor-grid">
+    <% doctors.forEach(function(doctor) { %>
+      <div class="doctor-card">
+        <h3><%= doctor.name %></h3>
+        <p><%= doctor.specialization %></p>
+        <a href="/book" class="btn">Book Appointment</a>
+      </div>
+    <% }); %>
+  </div>
+<% } %>
+
+<%- include('partials/footer') %>

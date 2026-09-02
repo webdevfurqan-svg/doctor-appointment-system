@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+<h1>My Appointments</h1>
+
+<% if (appointments.length === 0) { %>
+  <p>You have no appointments yet.</p>
+<% } else { %>
+  <table class="appointment-table">
+    <thead>
+      <tr>
+        <th>Patient Name</th>
+        <th>Appointment Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% appointments.forEach(function(appointment) { %>
+        <tr>
+          <td><%= appointment.patientName %></td>
+          <t d><%= appointment.date.toDateString() %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+<% } %>
+
+<%- include('partials/footer') %>

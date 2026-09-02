@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+
+<h1>Book an Appointment</h1>
+
+<% if (error) { %>
+  <div class="error-message"><%= error %></div>
+<% } %>
+
+<% if (success) { %>
+  <div class="success-message"><%= success %></div>
+<% } %>
+
+<form action="/book" method="POST" class="form-box">
+  <label for="patientName">Patient Name</label>
+  <input type="text" id="patientName" name="patientName" required>
+
+  <label for="doctorId">Select Doctor</label>
+  <select id="doctorId" name="doctorId" required>
+    <option value="">-- Choose a Doctor --</option>
+    <% doctors.forEach(function(doctor) { %>
+      <option value="<%= doctor._id %>"><%= doctor.name %> (<%= doctor.specialization %>)</option>
+    <% }); %>
+  </select>
+
+  <label for="date">Appointment Date</label>
+  <input type="date" id="date" name="date" required>
+
+  <button type="submit">Book Appointment</button>
+</form>
+
+<%- include('partials/footer') %>
