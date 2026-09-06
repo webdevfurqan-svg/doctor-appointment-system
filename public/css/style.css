@@ -4,33 +4,54 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f4f6f8;
   color: #222;
   line-height: 1.5;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .site-header {
   background-color: #0d6e6e;
   color: white;
-  padding: 15px 30px;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .site-header .logo {
-  font-size: 20px;
+  font-size: clamp(16px, 4vw, 20px);
   font-weight: bold;
+}
+
+.site-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 15px;
 }
 
 .site-header nav a {
   color: white;
   text-decoration: none;
-  margin-left: 15px;
-  font-size: 15px;
+  font-size: 14px;
+  padding: 6px 4px;
+  white-space: nowrap;
 }
 
 .site-header nav a:hover {
@@ -39,6 +60,7 @@ body {
 
 .container {
   max-width: 900px;
+  width: 100%;
   margin: 40px auto;
   padding: 20px;
   background-color: white;
@@ -49,12 +71,14 @@ body {
 h1 {
   margin-bottom: 20px;
   color: #0d6e6e;
+  font-size: clamp(20px, 5vw, 28px);
 }
 
 .form-box {
   display: flex;
   flex-direction: column;
   max-width: 400px;
+  width: 100%;
 }
 
 .form-box label {
@@ -65,22 +89,24 @@ h1 {
 
 .form-box input,
 .form-box select {
-  padding: 10px;
+  padding: 12px 10px;
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 16px;
+  width: 100%;
 }
 
 .form-box button {
   margin-top: 20px;
-  padding: 12px;
+  padding: 14px;
   background-color: #0d6e6e;
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 16px;
   cursor: pointer;
+  min-height: 44px; 
 }
 
 .form-box button:hover {
@@ -90,12 +116,14 @@ h1 {
 .btn {
   display: inline-block;
   margin-top: 12px;
-  padding: 8px 16px;
+  padding: 10px 18px;
   background-color: #0d6e6e;
   color: white;
   text-decoration: none;
   border-radius: 5px;
   font-size: 14px;
+  min-height: 44px;
+  line-height: 24px;
 }
 
 .btn:hover {
@@ -109,6 +137,7 @@ h1 {
   border-radius: 5px;
   margin-bottom: 15px;
   font-size: 14px;
+  word-break: break-word;
 }
 
 .success-message {
@@ -118,6 +147,7 @@ h1 {
   border-radius: 5px;
   margin-bottom: 15px;
   font-size: 14px;
+  word-break: break-word;
 }
 
 .doctor-grid {
@@ -137,12 +167,21 @@ h1 {
 .doctor-card h3 {
   color: #0d6e6e;
   margin-bottom: 5px;
+  font-size: 16px;
+  word-wrap: break-word;
+}
+
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 20px;
 }
 
 .appointment-table {
   width: 100%;
+  min-width: 480px;
   border-collapse: collapse;
-  margin-top: 20px;
 }
 
 .appointment-table th,
@@ -151,6 +190,7 @@ h1 {
   padding: 10px;
   text-align: left;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .appointment-table th {
@@ -170,22 +210,74 @@ h1 {
   font-size: 13px;
 }
 
+@media (max-width: 768px) {
+  .container {
+    margin: 25px 15px;
+    padding: 18px;
+  }
+
+  .doctor-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
 @media (max-width: 600px) {
   .site-header {
     flex-direction: column;
     align-items: flex-start;
+    padding: 12px 16px;
+  }
+
+  .site-header nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .site-header nav a {
+    font-size: 14px;
   }
 
   .container {
-    margin: 20px 10px;
+    margin: 15px 10px;
     padding: 15px;
+    border-radius: 6px;
+  }
+
+  h1 {
+    margin-bottom: 15px;
+  }
+
+  .form-box {
+    max-width: 100%;
   }
 
   .doctor-grid {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
 
-  .appointment-table {
-    font-size: 12px;
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    font-size: 15px;
+  }
+
+  .site-header .logo {
+    font-size: 16px;
+  }
+
+  .container {
+    margin: 10px 6px;
+    padding: 12px;
+  }
+
+  .form-box input,
+  .form-box select,
+  .form-box button {
+    padding: 10px 8px;
   }
 }
